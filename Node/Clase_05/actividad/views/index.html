@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-800">
+    <form action="/" method="post" class="w-4/12 bg-white mx-auto rounded-lg mt-10 p-6">
+        <fieldset class="space-y-4">
+            <legend class="text-center mb-5 font-bold text-2xl uppercase">Vuelo</legend>
+            <div id="alert" class="mb-5 bg-red-500 w-full rounded text-center text-white font-bold uppercase p-2 hidden"></div>
+            <div>
+                <label for="code" class="text-sm">Código de vuelo:</label>
+                <input type="text" id="code" name="code" class="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+            <div>
+                <label for="id" class="text-sm">ID Pasajero:</label>
+                <input type="text" id="id" name="id" class="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+            <div>
+                <label for="luggage" class="text-sm">Pesos de maletas (kg, separados por comas):</label>
+                <input type="text" id="luggage" name="luggage" placeholder="Ej: 12, 5, 13" class="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+        </fieldset>
+        <input type="submit" value="Enviar" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 cursor-pointer mt-4" />
+    </form>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get('error');
+    const code = params.get('code');
+    const id = params.get('id');
+    const luggage = params.get('luggage');
+
+    if (error) {
+        const alertDiv = document.getElementById('alert');
+        alertDiv.textContent = decodeURIComponent(error);
+        alertDiv.classList.remove('hidden');
+    }
+
+    if (code) document.getElementById('code').value = code;
+    if (id) document.getElementById('id').value = id;
+    if (luggage) document.getElementById('luggage').value = luggage;
+</script>
+
+</body>
+</html>

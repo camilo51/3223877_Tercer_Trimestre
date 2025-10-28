@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-800">
+    <div>
+        <h1 class="text-center text-white font-bold uppercase text-3xl mt-5 mb-2">Datos del pasajero</h1>
+        <table class="w-6/12 bg-white mx-auto rounded-lg p-6 text-center text-black">
+            <tr class="font-bold text-md">
+                <th class="border p-2 uppercase">ID Pasajero</th>
+                <th class="border p-2 uppercase">Peso Total de Equipaje</th>
+                <th class="border p-2 uppercase">Exceso</th>
+                <th class="border p-2 uppercase">Costo Total por Exceso</th>
+            </tr>
+            <tr class="mt-4">
+                <td class="border p-2" id="id">P001</td>
+                <td class="border p-2" id="weight">40 Kg</td>
+                <td class="border p-2" id="excess">8 Kg</td>
+                <td class="border p-2" id="overageCost">COP 8000</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h1 class="text-center text-white font-bold uppercase text-3xl mt-5 mb-2">Datos del vuelo</h1>
+        <table class="w-6/12 bg-white mx-auto rounded-lg p-6 text-center text-black">
+            <tr class="font-bold text-md">
+                <th class="border p-2 uppercase">Código de Vuelo</th>
+                <th class="border p-2 uppercase">Total de Maletas</th>
+                <th class="border p-2 uppercase">Peso Total</th>
+                <th class="border p-2 uppercase">Pasajeros con Exceso</th>
+                <th class="border p-2 uppercase">Recaudacion Total</th>
+            </tr>
+            <tr class="mt-4">
+                <td class="border p-2" id="code">AA123</td>
+                <td class="border p-2" id="luggages">50</td>
+                <td class="border p-2" id="totalWeight">40 Kg</td>
+                <td class="border p-2" id="passengersWithExcess">8 Kg</td>
+                <td class="border p-2" id="totalOverageCost">COP 8000</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="flex justify-center">
+        <a href="/" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 cursor-pointer mt-4">Regresar</a>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+        const id = params.get('id');
+        const weight = params.get('weight');
+        const excess = params.get('excess');
+        const overageCost = params.get('overageCost');
+        const luggages = params.get('luggages');
+
+        if (!code || !id || !weight || !excess || !overageCost || !luggages) {
+            window.location.href = '/';
+        } else {
+            document.getElementById('id').textContent = id;
+            document.getElementById('weight').textContent = weight + ' Kg';
+            document.getElementById('excess').textContent = excess + ' Kg';
+            document.getElementById('overageCost').textContent = 'COP ' + overageCost;
+
+            let datosExistentes = JSON.parse(sessionStorage.getItem('data')) || [];
+
+            datosExistentes = datosExistentes.filter(
+                dato => !(dato.code === code && dato.id === id)
+            );
+
+            const nuevoDato = { code, id, weight, excess, overageCost, luggages };
+            datosExistentes.push(nuevoDato);
+            sessionStorage.setItem('data', JSON.stringify(datosExistentes));
+
+            actualizarVista(code);
+        }
+
+        function actualizarVista(code) {
+            const datosExistentes = JSON.parse(sessionStorage.getItem('data')) || [];
+
+            let totalLuggages = 0;
+            let totalWeight = 0;
+            let totalOverageCost = 0;
+            let passengersWithExcess = 0;
+
+            datosExistentes.forEach(dato => {
+                if (dato.code === code) {
+                    totalLuggages += parseFloat(dato.luggages);
+                    totalWeight += parseFloat(dato.weight);
+                    totalOverageCost += parseFloat(dato.overageCost);
+
+                    if (parseFloat(dato.excess) > 0) {
+                        passengersWithExcess++;
+                    }
+                }
+            });
+
+            document.getElementById('code').textContent = code;
+            document.getElementById('luggages').textContent = totalLuggages;
+            document.getElementById('totalWeight').textContent = totalWeight + ' Kg';
+            document.getElementById('passengersWithExcess').textContent = passengersWithExcess;
+            document.getElementById('totalOverageCost').textContent = 'COP ' + totalOverageCost.toLocaleString();
+        }
+    </script>
+
+
+</body>
+
+</html>
