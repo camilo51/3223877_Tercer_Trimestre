@@ -7,14 +7,12 @@ export default function Home() {
     lastName: "Pereira",
     profile: "Hola soy un desarrollador web, me gusta programar y aprender cosas nuevas.",
     about: {
-      info: {
-        age: 22,
-        country: "Colombia",
-        city: "Medellin",
+      contact:{
+        location: "Colombia, Medellin",
         email: "correo@gmail.com",
         phone: "3187327025",
       },
-      hobbies: ["Jugar videojuegos", "Ver series", "Jugar Bassketball", "Programar", "Ganar Dinero"],
+      hobbies: ["Jugar videojuegos", "Programar", "Ganar Dinero"],
     }
   }
 
