@@ -1,0 +1,28 @@
+.tarjeta {
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #f0f4f8;
+    text-align: center;
+}
+
+.titulo {
+    color: #28a745;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.boton {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background-color: #34d65a;
+}
+
