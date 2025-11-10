@@ -1,0 +1,15 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+h1{
+  font-size: 50px;
+  color: blue;
+  text-align: center;
+  text-decoration: underline;
+}
+p{
+  font-size: 25px;
+  color: gray;
+  text-align: center;
+}
