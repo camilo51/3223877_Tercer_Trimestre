@@ -8,26 +8,22 @@ class ProcesarPedido extends eventEmitter{
 
     init(){
         console.log("Iniciando el proceso del pedido...", this.pedido);
-        setInterval(() => {
+        setTimeout(() => {
             console.log("Pedido recibido...");
             this.emit("process")
-        }, 5000)
+        }, 1000)
     }
     process(){
         setTimeout(() => {
             console.log("Procesando pedido...");
-            this.emit("Enviar");
-        }, 5000)
+            this.emit("send");
+        }, 1000)
     }
     send(){
         setTimeout(() => {
             console.log("Enviando Pedido...");
-            this.emit("completed");
-        }, 5000)
-    }
-    completed(){
-        console.log("Enviando Pedido...");
-        this.emit("completed");
+            this.emit("onCompleted");
+        }, 1000)
     }
     onCompleted(callback){
         this.on("completed", callback());
