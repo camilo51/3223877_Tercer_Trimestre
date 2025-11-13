@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocteles | Cristian Pereira</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-indigo-50 min-h-screen">
+    <div class="w-8/12 mx-auto">
+        <h1 class="text-center text-4xl font-bold uppercase py-5 text-indigo-900">Cocteles | Cristian Pereira</h1>
+        <div class="flex justify-end">
+            <button id="refresh-btn" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded transition-all duration-300">
+                Refrescar Cócteles
+            </button>
+        </div>
+        <div class="grid grid-cols-4 gap-4 mt-5">
+        <div class=" group shadow-lg rounded overflow-hidden hover:scale-105 transition-all duration-300">
+            <div class="overflow-hidden">
+                <img class="w-full group-hover:rotate-6 group-hover:scale-120  transition-all duration-300 z-5 relative" src="https://www.thecocktaildb.com/images/media/drink/mwko4q1582482903.jpg" />
+            </div>
+            <div class="p-2 z-10 bg-white relative w-full">
+                <p class="font-bold">Flying Dutchman</p>
+                <p>Categoría: Ordinary Drink</p>
+                <p>Alcohol: Sí</p>
+            </div>
+        </div>
+    
+        <div class=" group shadow-lg rounded overflow-hidden hover:scale-105 transition-all duration-300">
+            <div class="overflow-hidden">
+                <img class="w-full group-hover:rotate-6 group-hover:scale-120  transition-all duration-300 z-5 relative" src="https://www.thecocktaildb.com/images/media/drink/869qr81487603278.jpg" />
+            </div>
+            <div class="p-2 z-10 bg-white relative w-full">
+                <p class="font-bold">Tomato Tang</p>
+                <p>Categoría: Other / Unknown</p>
+                <p>Alcohol: No</p>
+            </div>
+        </div>
+    
+        <div class=" group shadow-lg rounded overflow-hidden hover:scale-105 transition-all duration-300">
+            <div class="overflow-hidden">
+                <img class="w-full group-hover:rotate-6 group-hover:scale-120  transition-all duration-300 z-5 relative" src="https://www.thecocktaildb.com/images/media/drink/mql55h1643820632.jpg" />
+            </div>
+            <div class="p-2 z-10 bg-white relative w-full">
+                <p class="font-bold">Vodka Lemon</p>
+                <p>Categoría: Cocktail</p>
+                <p>Alcohol: Sí</p>
+            </div>
+        </div>
+    
+        <div class=" group shadow-lg rounded overflow-hidden hover:scale-105 transition-all duration-300">
+            <div class="overflow-hidden">
+                <img class="w-full group-hover:rotate-6 group-hover:scale-120  transition-all duration-300 z-5 relative" src="https://www.thecocktaildb.com/images/media/drink/3s36ql1504366260.jpg" />
+            </div>
+            <div class="p-2 z-10 bg-white relative w-full">
+                <p class="font-bold">Bourbon Sling</p>
+                <p>Categoría: Ordinary Drink</p>
+                <p>Alcohol: Sí</p>
+            </div>
+        </div>
+    
+        <div class=" group shadow-lg rounded overflow-hidden hover:scale-105 transition-all duration-300">
+            <div class="overflow-hidden">
+                <img class="w-full group-hover:rotate-6 group-hover:scale-120  transition-all duration-300 z-5 relative" src="https://www.thecocktaildb.com/images/media/drink/ypxsqy1483387829.jpg" />
+            </div>
+            <div class="p-2 z-10 bg-white relative w-full">
+                <p class="font-bold">Alfie Cocktail</p>
+                <p>Categoría: Ordinary Drink</p>
+                <p>Alcohol: Sí</p>
+            </div>
+        </div>
+    
+        <div class=" group shadow-lg rounded overflow-hidden hover:scale-105 transition-all duration-300">
+            <div class="overflow-hidden">
+                <img class="w-full group-hover:rotate-6 group-hover:scale-120  transition-all duration-300 z-5 relative" src="https://www.thecocktaildb.com/images/media/drink/3m6yz81504389551.jpg" />
+            </div>
+            <div class="p-2 z-10 bg-white relative w-full">
+                <p class="font-bold">Boomerang</p>
+                <p>Categoría: Ordinary Drink</p>
+                <p>Alcohol: Sí</p>
+            </div>
+        </div>
+    
+        <div class=" group shadow-lg rounded overflow-hidden hover:scale-105 transition-all duration-300">
+            <div class="overflow-hidden">
+                <img class="w-full group-hover:rotate-6 group-hover:scale-120  transition-all duration-300 z-5 relative" src="https://www.thecocktaildb.com/images/media/drink/7os4gs1606854357.jpg" />
+            </div>
+            <div class="p-2 z-10 bg-white relative w-full">
+                <p class="font-bold">Harvey Wallbanger</p>
+                <p>Categoría: Ordinary Drink</p>
+                <p>Alcohol: Sí</p>
+            </div>
+        </div>
+    
+        <div class=" group shadow-lg rounded overflow-hidden hover:scale-105 transition-all duration-300">
+            <div class="overflow-hidden">
+                <img class="w-full group-hover:rotate-6 group-hover:scale-120  transition-all duration-300 z-5 relative" src="https://www.thecocktaildb.com/images/media/drink/2rzfer1487602699.jpg" />
+            </div>
+            <div class="p-2 z-10 bg-white relative w-full">
+                <p class="font-bold">Surf City Lifesaver</p>
+                <p>Categoría: Ordinary Drink</p>
+                <p>Alcohol: Sí</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        document.getElementById('refresh-btn').addEventListener('click', () => {
+            window.location.reload(); 
+        });
+    </script>
+
+</body>
+</html>
