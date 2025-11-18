@@ -10,9 +10,6 @@ class Frutas extends EventEmitter {
     }
 
     insert() {
-        console.log("Insertando datos...");
-        console.log(`Datos: [${this.name}, ${this.price}, ${this.stock}]`);
-        
         const sql = ("INSERT INTO frutas (name, price, stock) VALUES (?, ?, ?)")
         const values = [this.name, this.price, this.stock];
         db.query(sql, values, (err, result) => {
@@ -23,8 +20,30 @@ class Frutas extends EventEmitter {
             }
         })
     }
+    update(id) {
+        const sql = ("UPDATE frutas SET name = ?, price = ?, stock = ? WHERE id = ?");
+        const values = [this.name, this.price, this.stock, id];
+
+        db.query(sql, values, (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                this.emit("finished");
+            }
+        })
+    }
+    delete(id){
+        const sql = ("DELETE FROM frutas WHERE id = ?");
+        db.query(sql, id, (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                this.emit("finished");
+            }
+        })
+    }
     finished() {
-        console.log("Datos insertados corecctamente.");
+        console.log("Finalizacion de la consulta.");
     }
     list(callback) {
         const sql = "SELECT * FROM frutas";
@@ -36,6 +55,19 @@ class Frutas extends EventEmitter {
                 callback(result);
             }
         });
+    }
+
+    getById(id, callback){
+        const sql = "SELECT * FROM frutas WHERE ? LIMIT 1";
+        const values = {id: id};
+        db.query(sql, values, (err, result) => {
+            if (err) {
+                console.log("Error al obtener la fruta:", err);
+                callback([]);
+            } else {
+                callback(result[0]);
+            }
+        })
     }
 }
 

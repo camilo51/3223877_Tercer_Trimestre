@@ -6,7 +6,6 @@ const db = require("./config/db.js");
 const routes = require("./routes.js");
 
 const app = express();
-const router = express.Router();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
