@@ -1,8 +1,4 @@
-const login = (login) => {
-    if (!login){
-        console.log("No está logueado");
-        return false;
-    }
-    console.log("Está logueado");
-    return true;
-}
+export const login = (login) => {
+  console.log(login ? "Está logueado" : "No está logueado");
+  return !!login;
+};
