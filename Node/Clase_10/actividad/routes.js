@@ -74,65 +74,65 @@ router.get("/list", (req, res) => {
         res.send(html);
     });
 
-    router.get('/edit/:id', (req, res) => { 
-        const id = req.params.id;
-        const frutas = new Frutas();
-        frutas.getById(id, (data) => {
-            const html = `
-                <!DOCTYPE html>
-                <html lang="es">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Editar | Cristian Pereira</title>
-                    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-                </head>
-                <body class="bg-gray-200">
-                    <form method="post" class="bg-white p-4 rounded-lg shadow-md mx-auto mt-10 max-w-md">
-                        <fieldset>
-                            <legend class="text-center font-bold text-xl mb-4 uppercase">Editar fruta</legend>
-                            <div class="flex justify-end ">
-                                <a href="/list" class="text-blue-700 underline hover:cursor-pointer hover:text-blue-400 mb-2">Volver</a>
-                            </div>
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-bold mb-1 text-sm">Nombre</label>
-                                <input type="text" required name="name" id="name" value="${data.name}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 placeholder:text-gray-200" placeholder="Ej: Manzana">
-                            </div>
-                            <div class="mb-4">
-                                <label for="price" class="block text-gray-700 font-bold mb-1 text-sm">Precio</label>
-                                <input type="number" required name="price" id="price" value="${data.price}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 placeholder:text-gray-200" placeholder="Ej: 2000">
-                            </div>
-                            <div class="mb-4">
-                                <label for="stock" class="block text-gray-700 font-bold mb-1 text-sm">Cantidad</label>
-                                <input type="number" required name="stock" id="stock" value="${data.stock}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 placeholder:text-gray-200" placeholder="Ej: 20">
-                            </div>
-                        </fieldset>
-                        <div>
-                            <button type="submit" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-md hover:cursor-pointer">Editar</button>
+})
+router.get('/edit/:id', (req, res) => { 
+    const id = req.params.id;
+    const frutas = new Frutas();
+    frutas.getById(id, (data) => {
+        const html = `
+            <!DOCTYPE html>
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Editar | Cristian Pereira</title>
+                <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+            </head>
+            <body class="bg-gray-200">
+                <form method="post" class="bg-white p-4 rounded-lg shadow-md mx-auto mt-10 max-w-md">
+                    <fieldset>
+                        <legend class="text-center font-bold text-xl mb-4 uppercase">Editar fruta</legend>
+                        <div class="flex justify-end ">
+                            <a href="/list" class="text-blue-700 underline hover:cursor-pointer hover:text-blue-400 mb-2">Volver</a>
                         </div>
-                    </form>
-                </body>
-                </html>
-            `;
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 font-bold mb-1 text-sm">Nombre</label>
+                            <input type="text" required name="name" id="name" value="${data.name}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 placeholder:text-gray-200" placeholder="Ej: Manzana">
+                        </div>
+                        <div class="mb-4">
+                            <label for="price" class="block text-gray-700 font-bold mb-1 text-sm">Precio</label>
+                            <input type="number" required name="price" id="price" value="${data.price}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 placeholder:text-gray-200" placeholder="Ej: 2000">
+                        </div>
+                        <div class="mb-4">
+                            <label for="stock" class="block text-gray-700 font-bold mb-1 text-sm">Cantidad</label>
+                            <input type="number" required name="stock" id="stock" value="${data.stock}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 placeholder:text-gray-200" placeholder="Ej: 20">
+                        </div>
+                    </fieldset>
+                    <div>
+                        <button type="submit" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-md hover:cursor-pointer">Editar</button>
+                    </div>
+                </form>
+            </body>
+            </html>
+        `;
 
-            res.send(html);
-        })
+        res.send(html);
     })
-    router.post('/edit/:id', (req, res) => {
-        const {name, price, stock} = req.body;
-        const id = req.params.id;
-        const fruta = new Frutas(name, price, stock);
-        fruta.update(id);
-        fruta.on('finished', () => fruta.finished());
-        res.redirect("/list");
-    })
-    router.post('/delete/:id', (req, res) => {
-        const id = req.params.id;
-        const fruta = new Frutas();
-        fruta.delete(id);
-        fruta.on('finished', () => fruta.finished());
-        res.redirect("/list");
-    })
+})
+router.post('/edit/:id', (req, res) => {
+    const {name, price, stock} = req.body;
+    const id = req.params.id;
+    const fruta = new Frutas(name, price, stock);
+    fruta.update(id);
+    fruta.on('finished', () => fruta.finished());
+    res.redirect("/list");
+})
+router.post('/delete/:id', (req, res) => {
+    const id = req.params.id;
+    const fruta = new Frutas();
+    fruta.delete(id);
+    fruta.on('finished', () => fruta.finished());
+    res.redirect("/list");
 })
 
 module.exports = router;

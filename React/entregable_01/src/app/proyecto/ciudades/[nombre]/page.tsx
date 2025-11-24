@@ -13,7 +13,6 @@ export default function page() {
         <>
             <PageHeader />
 
-
             <Card className="w-1/2 mx-auto mt-10">
                 <CardHeader>
                     <CardTitle>{nombre}</CardTitle>
