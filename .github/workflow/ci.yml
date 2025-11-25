@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install deps (if package.json)
+        run: |
+          if [ -f package.json ]; then
+            npm ci || npm install
+          fi
+      - name: Lint (Prettier)
+        run: npx prettier . --check
+
+      - name: Tests (Node 22 runner)
+        run: |
+          if [ -d tests ]; the

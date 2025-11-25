@@ -1,23 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hola a Todos</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Agregar una nota nueva</h1>
 
     <form action="/insert" method="post">
-        <label for="name">Nombre</label>
-        <input type="text" id="name" name="name" required placeholder="Sacar los perros">
-        <br>
-        <br>
-        <label for="description">Descripción</label>
-        <textarea name="description" id="description"></textarea>
+      <label for="name">Nombre</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        placeholder="Sacar los perros"
+      />
+      <br />
+      <br />
+      <label for="description">Descripción</label>
+      <textarea name="description" id="description"></textarea>
 
-        <button type="submit">Guardar</button>
+      <button type="submit">Guardar</button>
     </form>
-
-</body>
+  </body>
 </html>

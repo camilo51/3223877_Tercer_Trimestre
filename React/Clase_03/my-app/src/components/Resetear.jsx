@@ -1,8 +1,12 @@
-import Button from "./Button"
+import Button from './Button';
 
-
-export default function Resetear({count, setCount}) {
-    return (
-        <Button texto={"Resetear"} operacion={"resetear"} count={count} setCount={setCount} />    
-    )
+export default function Resetear({ count, setCount }) {
+  return (
+    <Button
+      texto={'Resetear'}
+      operacion={'resetear'}
+      count={count}
+      setCount={setCount}
+    />
+  );
 }

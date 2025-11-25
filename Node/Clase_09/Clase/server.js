@@ -8,15 +8,14 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-
 app.post('/pedido', (req, res) => {
-    const pedido = req.body;
-    const procesar = new ProcesarPedido(pedido);
-    procesar.init();
-    procesar.on("process", () => procesar.process());
-    procesar.on("send", () => procesar.send());
-    procesar.on("onCompleted", () => {
-        const htmlContent = `
+  const pedido = req.body;
+  const procesar = new ProcesarPedido(pedido);
+  procesar.init();
+  procesar.on('process', () => procesar.process());
+  procesar.on('send', () => procesar.send());
+  procesar.on('onCompleted', () => {
+    const htmlContent = `
             <!DOCTYPE html>
             <html lang="en">
             <head>
@@ -32,24 +31,30 @@ app.post('/pedido', (req, res) => {
             </body>
             </html>
         `;
-        fs.writeFile(path.join(__dirname, 'public','pedido_completado.html'), htmlContent, (err) =>{
-            if (err) {
-                console.error(err);
-                res.status(500).send('Error al generar el pedido');
-            }else{
-                res.sendFile(path.join(__dirname, 'public','pedido_completado.html'));
-                console.log('HTML Generado');
-            }
-        })
-    })
-})
+    fs.writeFile(
+      path.join(__dirname, 'public', 'pedido_completado.html'),
+      htmlContent,
+      (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Error al generar el pedido');
+        } else {
+          res.sendFile(
+            path.join(__dirname, 'public', 'pedido_completado.html')
+          );
+          console.log('HTML Generado');
+        }
+      }
+    );
+  });
+});
 
 app.get('/pedido', (req, res) => {
-    const filePath = path.join(__dirname, 'public','pedido_completado.html');
+  const filePath = path.join(__dirname, 'public', 'pedido_completado.html');
 
-    fs.access(filePath, fs.constants.F_OK, (err) => {
-        if (err) {
-            return res.status(404).send(`
+  fs.access(filePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      return res.status(404).send(`
                 <!DOCTYPE html>
                 <html lang="es">
                 <head>
@@ -62,11 +67,11 @@ app.get('/pedido', (req, res) => {
                 </body>
                 </html>
             `);
-        }
-        res.sendFile(filePath);
-    })
-})
+    }
+    res.sendFile(filePath);
+  });
+});
 
 app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
+  console.log(`Server listening on port ${port}`);
 });

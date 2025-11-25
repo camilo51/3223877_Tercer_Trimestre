@@ -1,12 +1,12 @@
 interface BotonProps {
-    texto: string;
-    color?: string;
+  texto: string;
+  color?: string;
 }
 
-export default function Boton({texto, color="blue"}: BotonProps) {
+export default function Boton({ texto, color = 'blue' }: BotonProps) {
   return (
     <>
-        <button style={{backgroundColor: color}}>{texto}</button>
+      <button style={{ backgroundColor: color }}>{texto}</button>
     </>
-  )
+  );
 }

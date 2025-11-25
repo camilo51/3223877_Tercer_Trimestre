@@ -2,21 +2,21 @@ const express = require('express');
 const Frutas = require('./controllers/Frutas');
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-})
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
-router.post("/insert", (req, res) => {
-    const {name, price, stock} = req.body;
-    const procesar = new Frutas(name, price, stock)
-    procesar.insert();
-    procesar.on('finished', () => procesar.finished());
-    res.redirect("/list");
-})
-router.get("/list", (req, res) => {
-    const frutas = new Frutas();
-    frutas.list((data) => {
-        const html = `
+router.post('/insert', (req, res) => {
+  const { name, price, stock } = req.body;
+  const procesar = new Frutas(name, price, stock);
+  procesar.insert();
+  procesar.on('finished', () => procesar.finished());
+  res.redirect('/list');
+});
+router.get('/list', (req, res) => {
+  const frutas = new Frutas();
+  frutas.list((data) => {
+    const html = `
             <!DOCTYPE html>
             <html lang="en">
             <head>
@@ -30,7 +30,9 @@ router.get("/list", (req, res) => {
                     <div class="flex justify-end">
                         <a href="/" class="text-blue-700 underline hover:cursor-pointer hover:text-blue-400 mb-2">Volver</a>
                     </div>
-                    ${data.length > 0 ? `
+                    ${
+                      data.length > 0
+                        ? `
                     <table class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
                         <thead>
                             <tr class="bg-gray-800 text-white">
@@ -42,7 +44,9 @@ router.get("/list", (req, res) => {
                             </tr>
                         </thead>
                         <tbody>
-                            ${data.map((fruta) => `
+                            ${data
+                              .map(
+                                (fruta) => `
                                 <tr>
                                     <td class="p-3">${fruta.id}</td>
                                     <td class="p-3">${fruta.name}</td>
@@ -63,23 +67,26 @@ router.get("/list", (req, res) => {
                                         </form>
                                     </td>
                                 </tr>    
-                            `).join('')} 
+                            `
+                              )
+                              .join('')} 
                         </tbody>
                     </table>
-                    `: '<p class="p-2 bg-gray-300 text-gray-900 font-bold uppercase text-center mt-4 rounded">No hay datos</p>'}
+                    `
+                        : '<p class="p-2 bg-gray-300 text-gray-900 font-bold uppercase text-center mt-4 rounded">No hay datos</p>'
+                    }
                 </div>
             </body>
             </html>    
-        `
-        res.send(html);
-    });
-
-})
-router.get('/edit/:id', (req, res) => { 
-    const id = req.params.id;
-    const frutas = new Frutas();
-    frutas.getById(id, (data) => {
-        const html = `
+        `;
+    res.send(html);
+  });
+});
+router.get('/edit/:id', (req, res) => {
+  const id = req.params.id;
+  const frutas = new Frutas();
+  frutas.getById(id, (data) => {
+    const html = `
             <!DOCTYPE html>
             <html lang="es">
             <head>
@@ -116,23 +123,23 @@ router.get('/edit/:id', (req, res) => {
             </html>
         `;
 
-        res.send(html);
-    })
-})
+    res.send(html);
+  });
+});
 router.post('/edit/:id', (req, res) => {
-    const {name, price, stock} = req.body;
-    const id = req.params.id;
-    const fruta = new Frutas(name, price, stock);
-    fruta.update(id);
-    fruta.on('finished', () => fruta.finished());
-    res.redirect("/list");
-})
+  const { name, price, stock } = req.body;
+  const id = req.params.id;
+  const fruta = new Frutas(name, price, stock);
+  fruta.update(id);
+  fruta.on('finished', () => fruta.finished());
+  res.redirect('/list');
+});
 router.post('/delete/:id', (req, res) => {
-    const id = req.params.id;
-    const fruta = new Frutas();
-    fruta.delete(id);
-    fruta.on('finished', () => fruta.finished());
-    res.redirect("/list");
-})
+  const id = req.params.id;
+  const fruta = new Frutas();
+  fruta.delete(id);
+  fruta.on('finished', () => fruta.finished());
+  res.redirect('/list');
+});
 
 module.exports = router;
