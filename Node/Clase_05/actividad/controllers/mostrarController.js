@@ -5,5 +5,5 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const index = (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/tabla.html'));
-} 
+  res.sendFile(path.join(__dirname, '../views/tabla.html'));
+};

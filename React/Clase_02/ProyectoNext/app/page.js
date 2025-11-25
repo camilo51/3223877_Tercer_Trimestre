@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import styles from "./page.module.css"
+import styles from './page.module.css';
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -11,18 +11,17 @@ const App = () => {
     if (count === 0) {
       return;
     }
-    setCount(count - 1)
-  }
+    setCount(count - 1);
+  };
 
   return (
     <div className={styles.main}>
-      <h1>Contador con Next.js
-      </h1>
+      <h1>Contador con Next.js</h1>
       <p>Has hecho click {count} veces</p>
-      <button onClick={() => setCount( count + 1 )}>Incrementar</button>
+      <button onClick={() => setCount(count + 1)}>Incrementar</button>
       <button onClick={() => decrement()}>Decrementar</button>
     </div>
-  )
-}
+  );
+};
 
 export default App;

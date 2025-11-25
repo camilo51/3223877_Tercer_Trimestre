@@ -6,6 +6,6 @@ const router = express.Router();
 router.get('/', vuelo.index);
 router.post('/', vuelo.store);
 
-router.get('/mostrar', mostrar.index)
+router.get('/mostrar', mostrar.index);
 
 export default router;

@@ -1,11 +1,14 @@
-const myWeb = "https://google.com"
+const myWeb = 'https://google.com';
 const myNumero = 22;
-const myArray = ["Cistian", "Pereira", "Florez"];
+const myArray = ['Cistian', 'Pereira', 'Florez'];
 const usuario = {
-    nombre: "Cristian",
-    apellido: "Pereira",
-    edad: 22,
-}
+  nombre: 'Cristian',
+  apellido: 'Pereira',
+  edad: 22,
+};
 module.exports = {
-    myWeb, myNumero, myArray, usuario
-}
+  myWeb,
+  myNumero,
+  myArray,
+  usuario,
+};

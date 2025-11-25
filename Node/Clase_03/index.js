@@ -14,9 +14,12 @@
 // // console.log("Memoria Libre en GB", os.freemem());
 // console.log(`Memoria total en GB ${(memoriaTotal / (1024*1024*1024)).toFixed(0)}`);
 
-
-
-const {suma, resta, multiplicacion, division} = require("./modules/operaciones.js");
+const {
+  suma,
+  resta,
+  multiplicacion,
+  division,
+} = require('./modules/operaciones.js');
 
 console.log(`La suma es: ${suma(5, 5)}`);
 console.log(`La resta es: ${resta(5, 10)}`);
